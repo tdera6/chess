@@ -1,0 +1,25 @@
+.board-holder {
+  margin: auto;
+  width: 600px;
+  height: 600px;
+  border: 2px solid black;
+}
+
+.board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  width: 100%;
+  height: calc(100% / 8);
+  display: flex;
+}
+
+.tile {
+  border: 2px solid black;
+  width: calc(100% / 8);
+  height: 100%;
+}
