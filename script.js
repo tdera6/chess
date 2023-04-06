@@ -13,8 +13,12 @@ let gameState = [
   ["R", "N", "B", "Q", "K", "B", "N", "R"],
 ];
 
+let clickedPiece = "";
+let clickedTile = "";
+
 gameState.forEach((row, i) => {
   row.forEach((tile, j) => {
+    if (tile !== "") tiles[i * 8 + j].classList.add("piece");
     if (tile === "P") tiles[i * 8 + j].classList.add("white-pawn");
     else if (tile === "R") tiles[i * 8 + j].classList.add("white-rook");
     else if (tile === "N") tiles[i * 8 + j].classList.add("white-knight");
@@ -27,5 +31,25 @@ gameState.forEach((row, i) => {
     else if (tile === "b") tiles[i * 8 + j].classList.add("black-bishop");
     else if (tile === "q") tiles[i * 8 + j].classList.add("black-queen");
     else if (tile === "k") tiles[i * 8 + j].classList.add("black-king");
+  });
+});
+
+function pawnMove(e, i) {
+  tiles[clickedTile].classList.remove("white-pawn");
+  gameState[Math.floor(clickedTile / 8)][clickedTile % 8] = "";
+  gameState[Math.floor(i / 8)][i % 8] = "P";
+  e.classList.add("white-pawn");
+}
+
+tiles.forEach((e, i) => {
+  e.addEventListener("click", () => {
+    if (clickedPiece === "") {
+      clickedPiece = gameState[Math.floor(i / 8)][i % 8];
+      clickedTile = i;
+    } else if (clickedPiece === "P") {
+      pawnMove(e, i);
+      clickedPiece = "";
+      clickedTile = "";
+    }
   });
 });
