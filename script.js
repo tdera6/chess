@@ -16,6 +16,8 @@ let gameState = [
 let clickedPiece = "";
 let clickedTile = "";
 
+// Displaying pieces
+
 gameState.forEach((row, i) => {
   row.forEach((tile, j) => {
     if (tile !== "") tiles[i * 8 + j].classList.add("piece");
@@ -35,10 +37,21 @@ gameState.forEach((row, i) => {
 });
 
 function pawnMove(e, i) {
+  if (!whitePawnLegalMoves(clickedTile, i)) return false;
   tiles[clickedTile].classList.remove("white-pawn");
   gameState[Math.floor(clickedTile / 8)][clickedTile % 8] = "";
   gameState[Math.floor(i / 8)][i % 8] = "P";
   e.classList.add("white-pawn");
+}
+
+function whitePawnLegalMoves(clickedTile, i) {
+  if (whitePawnFirstMove(clickedTile, i)) return true;
+  if (i === clickedTile - 8) return true;
+}
+
+function whitePawnFirstMove(clickedTile, i) {
+  if (clickedTile >= 48 && clickedTile <= 56 && i === clickedTile - 16)
+    return true;
 }
 
 tiles.forEach((e, i) => {
