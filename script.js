@@ -36,12 +36,25 @@ gameState.forEach((row, i) => {
   });
 });
 
-function pawnMove(e, i) {
+function whitePawnMove(e, i) {
   if (!whitePawnLegalMoves(clickedTile, i)) return false;
   tiles[clickedTile].classList.remove("white-pawn");
   gameState[Math.floor(clickedTile / 8)][clickedTile % 8] = "";
   gameState[Math.floor(i / 8)][i % 8] = "P";
   e.classList.add("white-pawn");
+}
+
+function blackPawnMove(e, i) {
+  if (!blackPawnLegalMoves(clickedTile, i)) return false;
+  tiles[clickedTile].classList.remove("black-pawn");
+  gameState[Math.floor(clickedTile / 8)][clickedTile % 8] = "";
+  gameState[Math.floor(i / 8)][i % 8] = "p";
+  e.classList.add("black-pawn");
+}
+
+function blackPawnLegalMoves(clickedTile, i) {
+  if (blackPawnFirstMove(clickedTile, i)) return true;
+  if (i === clickedTile + 8) return true;
 }
 
 function whitePawnLegalMoves(clickedTile, i) {
@@ -54,13 +67,22 @@ function whitePawnFirstMove(clickedTile, i) {
     return true;
 }
 
+function blackPawnFirstMove(clickedTile, i) {
+  if (clickedTile >= 8 && clickedTile <= 16 && i === clickedTile + 16)
+    return true;
+}
+
 tiles.forEach((e, i) => {
   e.addEventListener("click", () => {
     if (clickedPiece === "") {
       clickedPiece = gameState[Math.floor(i / 8)][i % 8];
       clickedTile = i;
     } else if (clickedPiece === "P") {
-      pawnMove(e, i);
+      whitePawnMove(e, i);
+      clickedPiece = "";
+      clickedTile = "";
+    } else if (clickedPiece === "p") {
+      blackPawnMove(e, i);
       clickedPiece = "";
       clickedTile = "";
     }
