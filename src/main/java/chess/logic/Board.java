@@ -47,4 +47,20 @@ public class Board {
         }
         System.out.println("  a b c d e f g h");
     }
+
+    public void printLegalMoves() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] != null) {
+                    System.out.println("Square: " + i + " " + j);
+                    System.out.println("=============");
+                    System.out.println(board[i][j].getSymbol() + " legal moves: " + board[i][j].getLegalMoves(this, new Square(i, j)));
+                }
+            }
+        }
+    }
+
+    public boolean isValidSquare(int row, int col) {
+        return row >= 0 && row < 8 && col >= 0 && col < 8;
+    }
 }

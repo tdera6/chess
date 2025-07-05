@@ -1,6 +1,11 @@
 package chess.logic.pieces;
 
+import chess.logic.Board;
 import chess.logic.Color;
+import chess.logic.Move;
+import chess.logic.Square;
+
+import java.util.List;
 
 public class Knight extends Piece {
     public Knight(Color color) {
@@ -14,5 +19,10 @@ public class Knight extends Piece {
         } else {
             return 'n';
         }
+    }
+
+    @Override
+    public List<Move> getLegalMoves(Board board, Square currentSquare) {
+        return null;
     }
 }
