@@ -42,22 +42,22 @@ public class Board {
     public void printToConsole() {
         System.out.println("  a b c d e f g h");
         for (int i = 0; i < 8; i++) {
-            System.out.print(i + 1);
+            System.out.print(8 - i);
             for (int j = 0; j < 8; j++) {
                 System.out.print(" " + (board[i][j] == null ? " " : board[i][j].getSymbol()));
             }
-            System.out.println(" " + (i + 1));
+            System.out.println(" " + (8 - i));
         }
         System.out.println("  a b c d e f g h");
     }
 
-    public void printLegalMoves() {
+    public void printLegalMoves(Color color) {
 
         List<Move> allLegalMoves = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board[i][j] != null) {
+                if (board[i][j] != null && board[i][j].getColor() == color) {
                     List<Move> moves = board[i][j].getLegalMoves(this, new Square(i, j));
                     if (moves != null) {
                         allLegalMoves.addAll(moves);

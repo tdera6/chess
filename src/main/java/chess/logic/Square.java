@@ -30,7 +30,9 @@ public class Square {
             default -> ' ';
         };
 
-        return String.valueOf(col) + (row + 1);
+        int r = 8 - row;
+
+        return String.valueOf(col) + r;
     }
 
     @Override
