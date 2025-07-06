@@ -2,6 +2,9 @@ package chess.logic;
 
 import chess.logic.pieces.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     private final Piece[][] board = new Piece[8][8];
@@ -49,14 +52,22 @@ public class Board {
     }
 
     public void printLegalMoves() {
+
+        List<Move> allLegalMoves = new ArrayList<>();
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] != null) {
-                    System.out.println("Square: " + i + " " + j);
-                    System.out.println("=============");
-                    System.out.println(board[i][j].getSymbol() + " legal moves: " + board[i][j].getLegalMoves(this, new Square(i, j)));
+                    List<Move> moves = board[i][j].getLegalMoves(this, new Square(i, j));
+                    if (moves != null) {
+                        allLegalMoves.addAll(moves);
+                    }
                 }
             }
+        }
+
+        for (Move move : allLegalMoves) {
+            System.out.println(move);
         }
     }
 
