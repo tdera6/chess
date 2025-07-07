@@ -20,5 +20,11 @@ public abstract class Piece {
 
     public abstract char getSymbol();
 
-    public abstract List<Move> getLegalMoves(Board board, Square square);
+    public List<Move> getLegalMoves(Board board, Square currentSquare) {
+        List<Move> legalMoves = generateMoves(board, currentSquare);
+
+        return legalMoves;
+    }
+
+    public abstract List<Move> generateMoves(Board board, Square square);
 }
