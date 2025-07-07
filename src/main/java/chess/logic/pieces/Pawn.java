@@ -26,7 +26,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board board, Square currentSquare) {
+    public List<Move> generateMoves(Board board, Square currentSquare) {
         int currentColumn = currentSquare.getColumn();
         int currentRow = currentSquare.getRow();
 

@@ -5,9 +5,10 @@ import chess.logic.Color;
 import chess.logic.Move;
 import chess.logic.Square;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Bishop extends Piece {
+public class Bishop extends SlidingPiece {
     public Bishop(Color color) {
         super(color);
     }
@@ -22,7 +23,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public List<Move> getLegalMoves(Board board, Square currentSquare) {
-        return null;
+    protected int[][] getDirections() {
+        return new int[][]{{1, 1}, {-1, 1}, {1, -1}, {-1, -1}};
     }
 }

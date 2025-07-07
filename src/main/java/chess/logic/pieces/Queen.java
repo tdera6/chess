@@ -5,9 +5,10 @@ import chess.logic.Color;
 import chess.logic.Move;
 import chess.logic.Square;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Queen extends Piece {
+public class Queen extends SlidingPiece {
     public Queen(Color color) {
         super(color);
     }
@@ -21,8 +22,7 @@ public class Queen extends Piece {
         }
     }
 
-    @Override
-    public List<Move> getLegalMoves(Board board, Square currentSquare) {
-        return null;
+    protected int[][] getDirections() {
+        return new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, -1}, {1, -1}, {-1, 1}};
     }
 }
