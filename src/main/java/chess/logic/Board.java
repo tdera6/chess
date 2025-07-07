@@ -53,12 +53,19 @@ public class Board {
 
     public void printLegalMoves(Color color) {
 
-        List<Move> allLegalMoves = new ArrayList<>();
+        List<Move> allLegalMoves = getAllLegalMoves(color);
 
+        for (Move move : allLegalMoves) {
+            System.out.println(move);
+        }
+    }
+
+    public List<Move> getAllLegalMoves(Color color) {
+        List<Move> allLegalMoves = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] != null && board[i][j].getColor() == color) {
-                    List<Move> moves = board[i][j].getLegalMoves(this, new Square(i, j));
+                    List<Move> moves = board[i][j].generateMoves(this, new Square(i, j));
                     if (moves != null) {
                         allLegalMoves.addAll(moves);
                     }
@@ -66,12 +73,14 @@ public class Board {
             }
         }
 
-        for (Move move : allLegalMoves) {
-            System.out.println(move);
-        }
+        return allLegalMoves;
     }
 
     public boolean isValidSquare(int row, int col) {
         return row >= 0 && row < 8 && col >= 0 && col < 8;
+    }
+
+    public Piece getPiece(int row, int col) {
+        return board[row][col];
     }
 }
