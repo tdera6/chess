@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-    protected boolean firstMove = true;
-
     public Pawn(Color color) {
         super(color);
     }
@@ -35,14 +33,14 @@ public class Pawn extends Piece {
         if (getColor() == Color.WHITE) {
             if(board.isValidSquare(currentRow - 1, currentColumn)) {
                 legalMoves.add(new Move(currentSquare, new Square(currentRow - 1, currentColumn)));
-                if(firstMove && board.isValidSquare(currentRow - 2, currentColumn)) {
+                if(currentRow == 6 && board.isValidSquare(currentRow - 2, currentColumn)) {
                     legalMoves.add(new Move(currentSquare, new Square(currentRow - 2, currentColumn)));
                 }
             }
         } else {
             if(board.isValidSquare(currentRow + 1, currentColumn)) {
                 legalMoves.add(new Move(currentSquare, new Square(currentRow + 1, currentColumn)));
-                if(firstMove && board.isValidSquare(currentRow + 2, currentColumn)) {
+                if(currentRow == 1 && board.isValidSquare(currentRow + 2, currentColumn)) {
                     legalMoves.add(new Move(currentSquare, new Square(currentRow + 2, currentColumn)));
                 }
             }
