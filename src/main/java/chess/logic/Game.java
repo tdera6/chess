@@ -22,8 +22,13 @@ public class Game {
         while (!gameOver) {
             System.out.println("Current player: " + currentPlayer);
             board.printBoard();
-            String moveAsString = scanner.next();
+            List<Move> allLegalMoves = board.getAllLegalMoves(currentPlayer);
+            System.out.println(allLegalMoves.size());
+
             Square[] squares = {};
+
+            String moveAsString = scanner.next();
+
             try {
                 squares = ParseMove(moveAsString);
             } catch (IllegalArgumentException e) {
@@ -32,7 +37,6 @@ public class Game {
                 continue;
             }
 
-            List<Move> allLegalMoves = board.getAllLegalMoves(currentPlayer);
 
             Move move = new Move(squares[0], squares[1]);
 
