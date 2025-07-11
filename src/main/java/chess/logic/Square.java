@@ -39,4 +39,13 @@ public class Square {
     public String toString() {
         return chessNotation();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Square) {
+            Square other = (Square) obj;
+            return this.row == other.row && this.column == other.column;
+        }
+        return false;
+    }
 }

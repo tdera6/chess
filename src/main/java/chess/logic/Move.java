@@ -12,4 +12,21 @@ public class Move {
     public String toString() {
         return from + " -> " + to;
     }
+
+    public Square getFrom() {
+        return from;
+    }
+
+    public Square getTo() {
+        return to;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Move) {
+            Move other = (Move) obj;
+            return this.from.equals(other.from) && this.to.equals(other.to);
+        }
+        return false;
+    }
 }
